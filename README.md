@@ -63,3 +63,18 @@ cat /tmp/output_llm_math.txt | grep -P "^LLM OUTPUT:" | uniq
 ```
 
 This only has a single output type at zero temperature, meets the deterministic condition.
+
+Test of vLLM with integral problem instead:
+
+```bash
+./generate_queries_integral.py /tmp/llm_integral 1000
+./send_local_llm_query.py /tmp/llm_integral_000.json
+
+ls -1 /tmp/llm_integral_*.json
+( ls -1 /tmp/llm_integral_*.json | parallel -j 10 ./send_local_llm_query.py ) >/tmp/output_llm_integral.txt
+
+cat /tmp/output_llm_integral.txt | grep -P "^LLM OUTPUT:" | head
+cat /tmp/output_llm_integral.txt | grep -P "^LLM OUTPUT:" | uniq
+```
+
+Also single answer, fully deterministic.
