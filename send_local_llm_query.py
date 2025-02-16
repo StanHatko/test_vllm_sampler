@@ -34,6 +34,7 @@ def send_query(prompt_file: str):
     print("Completion result:", completion)
     time_end = time.time()
     print(f"Time taken: {round(time_end - time_start, 2)} seconds.")
+    breakpoint()  # need to view
 
 
 if __name__ == "__main__":

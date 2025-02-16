@@ -31,7 +31,7 @@ sudo apt install parallel
 Clone the repo:
 
 ```bash
-git bashne https://github.com/StanHatko/test_vllm_sampler
+git clone https://github.com/StanHatko/test_vllm_sampler
 cd test_vllm_sampler
 ```
 
@@ -52,10 +52,10 @@ vllm serve hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4 \
 Initial test of vLLM:
 
 ```bash
-./generate_detect_num_list.py /tmp/llm_test_basic 10 0
-./send_local_llm_query.py /tmp/llm_test_basic_000.json
+./generate_queries_integral.py /tmp/llm_integral 1000
+./send_local_llm_query.py /tmp/llm_integral_000.json
 
-ls -1 /tmp/llm_test_basic_*.json
-ls -1 /tmp/llm_test_basic_*.json | parallel -j 10 ./send_local_llm_query.py
+ls -1 /tmp/llm_integral_*.json
+ls -1 /tmp/llm_integral_*.json | parallel -j 10 ./send_local_llm_query.py
 time ( ls -1 /tmp/llm_test_basic_*.json | parallel -j 10 ./send_local_llm_query.py )
 ```
