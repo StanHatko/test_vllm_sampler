@@ -11,13 +11,17 @@ import fire
 from openai import OpenAI
 
 
-def send_query(prompt_file: str):
+def send_query(
+    prompt_file: str,
+    temperature: float = 0,
+):
     """
     Send query to localhost LLM server and get response.
     """
 
     time_start = time.time()
     print("Load input file:", prompt_file)
+    print("Using temperature:", temperature)
     with open(prompt_file, "r", encoding="UTF8") as f:
         messages = json.load(f)
 
@@ -29,6 +33,7 @@ def send_query(prompt_file: str):
         messages=messages,
         model="hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4",
         max_tokens=256,
+        temperature=temperature,
     )
 
     print("Completion result:", completion)
