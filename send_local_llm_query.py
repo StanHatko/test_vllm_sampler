@@ -6,6 +6,8 @@ Send query to localhost VLLM server, for test purposes.
 
 import json
 import time
+import urllib.parse
+
 
 import fire
 from openai import OpenAI
@@ -41,7 +43,7 @@ def send_query(
     print(f"Time taken: {round(time_end - time_start, 2)} seconds.")
 
     out = completion.choices[0].message.content
-    out = out.encode("utf-8").decode("unicode-escape")
+    out = urllib.parse.quote_plus(out)
     print("LLM OUTPUT:", out)
 
 
