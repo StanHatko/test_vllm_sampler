@@ -33,7 +33,7 @@ def send_query(
     )
     completion = client.chat.completions.create(
         messages=messages,
-        model="hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4",
+        model="huihui-ai/Llama-3.3-70B-Instruct-abliterated-finetuned-GPTQ-Int4",
         max_tokens=256,
         temperature=temperature,
     )
