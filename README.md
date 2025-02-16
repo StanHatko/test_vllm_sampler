@@ -7,6 +7,10 @@ Some tests of vLLM sampler under various conditions.
 Goal is to determine if LLM is asked to solve an integral showing steps,
 is it consistent each time at zero temperature?
 
+TODO: upgrade to more powerful server, that can host 70B.
+The model `hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4` isn't good enough
+for the provided math problem.
+
 ### Hardware
 
 This test was done on a Lambda Labs gpu_1x_a10 server in the Virginia, USA region.
