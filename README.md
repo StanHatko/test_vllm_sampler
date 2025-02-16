@@ -56,13 +56,13 @@ Initial test of vLLM:
 ./send_local_llm_query.py /tmp/llm_math_000.json
 
 ls -1 /tmp/llm_math_*.json
-( ls -1 /tmp/llm_math_*.json | parallel -j 10 ./send_local_llm_query.py ) >/tmp/output_llm_math.txt
+( ls -1 /tmp/llm_math_*.json | parallel -j 100 ./send_local_llm_query.py ) >/tmp/output_llm_math.txt
 
 cat /tmp/output_llm_math.txt | grep -P "^LLM OUTPUT:" | head
 cat /tmp/output_llm_math.txt | grep -P "^LLM OUTPUT:" | uniq
 ```
 
-
+All identical, seems fully deterministic (no bug at zero temperature here).
 
 Test of vLLM with integral problem instead:
 
@@ -71,10 +71,10 @@ Test of vLLM with integral problem instead:
 ./send_local_llm_query.py /tmp/llm_integral_000.json
 
 ls -1 /tmp/llm_integral_*.json
-( ls -1 /tmp/llm_integral_*.json | parallel -j 10 ./send_local_llm_query.py ) >/tmp/output_llm_integral.txt
+( ls -1 /tmp/llm_integral_*.json | parallel -j 100 ./send_local_llm_query.py ) >/tmp/output_llm_integral.txt
 
 cat /tmp/output_llm_integral.txt | grep -P "^LLM OUTPUT:" | head
 cat /tmp/output_llm_integral.txt | grep -P "^LLM OUTPUT:" | uniq
 ```
 
-
+Also seems deterministic here.
