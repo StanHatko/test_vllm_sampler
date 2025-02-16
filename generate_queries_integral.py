@@ -12,7 +12,7 @@ import json
 import fire
 
 
-def generate_detect_num_list(
+def generate_queries(
     out_file_prefix: str,
     num_gen: int,
 ):
@@ -38,4 +38,4 @@ def generate_detect_num_list(
 
 
 if __name__ == "__main__":
-    fire.Fire(generate_detect_num_list)
+    fire.Fire(generate_queries)

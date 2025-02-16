@@ -1,10 +1,15 @@
-# Check LLM Determinism
+# Test vLLM Sampler
 
-Check determinism of LLM (with vLLM engine) under various conditions.
+Some tests of vLLM sampler under various conditions.
 
-## Test on Lambda Labs GPU Instance with 4-Bit Llama 3.1 8B
+## Integral Test for vLLM Determinism
 
-This test was done on a Lambda Labs gpu_1x_a100_sxm4 server in the Virginia, USA region.
+Goal is to determine if LLM is asked to solve an integral showing steps,
+is it consistent each time at zero temperature?
+
+### Hardware
+
+This test was done on a Lambda Labs gpu_1x_a10 server in the Virginia, USA region.
 
 The 4-bit GPTQ quantized Llama 3.1 8B LLM was used for this test.
 
@@ -26,9 +31,11 @@ sudo apt install parallel
 Clone the repo:
 
 ```bash
-git clone https://github.com/StanHatko/benchmark_llm_overlap_queries
-cd benchmark_llm_overlap_queries
+git bashne https://github.com/StanHatko/test_vllm_sampler
+cd test_vllm_sampler
 ```
+
+### Run Server
 
 Start vLLM server:
 
@@ -40,7 +47,9 @@ vllm serve hugging-quants/Meta-Llama-3.1-8B-Instruct-GPTQ-INT4 \
   --enable-prefix-caching
 ```
 
-Initial test of LLM (TODO change below):
+### Results with vLLM 0.7.2
+
+Initial test of vLLM:
 
 ```bash
 ./generate_detect_num_list.py /tmp/llm_test_basic 10 0
