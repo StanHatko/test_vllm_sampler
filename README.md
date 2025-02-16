@@ -43,8 +43,7 @@ Start vLLM server:
 vllm serve huihui-ai/Llama-3.3-70B-Instruct-abliterated-finetuned-GPTQ-Int4 \
   --host 127.0.0.1 \
   --port 8000 \
-  --max_model_len 16000 \
-  --enable-prefix-caching
+  --max_model_len 16000
 ```
 
 ### Results with vLLM 0.7.2
@@ -56,7 +55,7 @@ Initial test of vLLM:
 ./send_local_llm_query.py /tmp/llm_math_000.json
 
 ls -1 /tmp/llm_math_*.json
-( ls -1 /tmp/llm_math_*.json | parallel -j 100 ./send_local_llm_query.py ) >/tmp/output_llm_math.txt
+( ls -1 /tmp/llm_math_*.json | parallel -j 300 ./send_local_llm_query.py ) >/tmp/output_llm_math.txt
 
 cat /tmp/output_llm_math.txt | grep -P "^LLM OUTPUT:" | head
 cat /tmp/output_llm_math.txt | grep -P "^LLM OUTPUT:" | uniq
@@ -71,7 +70,7 @@ Test of vLLM with integral problem instead:
 ./send_local_llm_query.py /tmp/llm_integral_000.json
 
 ls -1 /tmp/llm_integral_*.json
-( ls -1 /tmp/llm_integral_*.json | parallel -j 100 ./send_local_llm_query.py ) >/tmp/output_llm_integral.txt
+( ls -1 /tmp/llm_integral_*.json | parallel -j 300 ./send_local_llm_query.py ) >/tmp/output_llm_integral.txt
 
 cat /tmp/output_llm_integral.txt | grep -P "^LLM OUTPUT:" | head
 cat /tmp/output_llm_integral.txt | grep -P "^LLM OUTPUT:" | uniq
