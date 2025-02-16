@@ -56,6 +56,10 @@ Initial test of vLLM:
 ./send_local_llm_query.py /tmp/llm_math_000.json
 
 ls -1 /tmp/llm_math_*.json
-ls -1 /tmp/llm_math_*.json | parallel -j 10 ./send_local_llm_query.py
-time ( ls -1 /tmp/llm_math_*.json | parallel -j 10 ./send_local_llm_query.py )
+( ls -1 /tmp/llm_math_*.json | parallel -j 10 ./send_local_llm_query.py ) >/tmp/output_llm_math.txt
+
+cat /tmp/output_llm_math.txt | grep -P "^LLM OUTPUT:" | head
+cat /tmp/output_llm_math.txt | grep -P "^LLM OUTPUT:" | uniq
 ```
+
+This only has a single output type at zero temperature, meets the deterministic condition.
