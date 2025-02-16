@@ -39,7 +39,9 @@ def send_query(
     print("Completion result:", completion)
     time_end = time.time()
     print(f"Time taken: {round(time_end - time_start, 2)} seconds.")
-    print("LLM OUTPUT:", completion.choices[0].message.content)
+
+    out = completion.choices[0].message.content.encode("string_escape")
+    print("LLM OUTPUT:", out)
 
 
 if __name__ == "__main__":
