@@ -40,7 +40,8 @@ def send_query(
     time_end = time.time()
     print(f"Time taken: {round(time_end - time_start, 2)} seconds.")
 
-    out = completion.choices[0].message.content.encode("string_escape")
+    out = completion.choices[0].message.content
+    out = out.encode("utf-8").decode("unicode-escape")
     print("LLM OUTPUT:", out)
 
 
